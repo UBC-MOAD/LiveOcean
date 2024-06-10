@@ -8,6 +8,7 @@ import subprocess
 import xarray as xr
 import numpy as np
 from datetime import timedelta
+from pathlib import Path
 
 def get_cast(out_fn, fn, lon, lat, npzd):
     
@@ -80,5 +81,11 @@ def get_his_fn_from_dt(Ldir, dt):
     else:
         his_num = ('0000' + str(dt.hour + 1))[-4:]
     date_string = dt.strftime(Ldir['ds_fmt'])
-    fn = Ldir['roms_out'] / Ldir['gtagex'] / ('f' + date_string) / ('ocean_his_' + his_num + '.nc')
+
+    if Ldir['gtagex'] == 'cas6_v0_live': # to make sure function is looking in the correct folder depending on model
+        path = Path("/data1/parker/LO_roms")
+    elif Ldir['gtagex'] == 'cas7_t0_x4b':
+        path = Path("/agdat1/parker/LO_roms")
+
+    fn = path / Ldir['gtagex'] / ('f' + date_string) / ('ocean_his_' + his_num + '.nc')
     return fn

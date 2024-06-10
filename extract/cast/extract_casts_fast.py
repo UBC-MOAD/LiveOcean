@@ -8,6 +8,9 @@ Refactored 2022_07 to conform to the new cast data format.
 Test on mac in ipython:
 run extract_casts_fast -gtx cas6_v0_live -source ecology -otype ctd -year 2019 -test True
 
+linux:
+python3 extract_casts_fast.py -gtx cas7_t0_x4b -source dfo1 -otype ctd -year 2013 -test True
+
 """
 
 import sys
@@ -24,16 +27,19 @@ from time import time
 from subprocess import Popen as Po
 from subprocess import PIPE as Pi
 import sys
+from pathlib import Path
 
 Ldir = exfun.intro() # this handles the argument passing
+path = Path("/data1/parker/LO_output") # this we need for the files i dont have copied in bbeutel 2024/04
 
 year_str = str(Ldir['year'])
 
 out_dir = (Ldir['LOo'] / 'extract' / Ldir['gtagex'] / 'cast' /
     (Ldir['source'] + '_' + Ldir['otype'] + '_' + year_str))
 Lfun.make_dir(out_dir, clean=True)
+print(out_dir)
 
-info_fn = Ldir['LOo'] / 'obs' / Ldir['source'] / Ldir['otype'] / ('info_' + year_str + '.p')
+info_fn = path / 'obs' / Ldir['source'] / Ldir['otype'] / ('info_' + year_str + '.p')
 if info_fn.is_file():
     ii = 0
     info_df = pd.read_pickle(info_fn)
