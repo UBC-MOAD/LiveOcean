@@ -4,25 +4,26 @@ channels:
 dependencies:
   # from Rob Hetland
   - cf_xarray
-  - dask
-  - jupyter
-  - jupyterlab
+  # - dask
+  # - jupyter
+  # - jupyterlab
   - netcdf4
-  - numba >= 0.49
+  # - numba >= 0.49
   - numpy
   - xarray
-  - xgcm
+  # - xgcm
   - cartopy
   - cmocean
-  - datashader
-  - geoviews
-  - holoviews
-  - hvplot
+  # - datashader
+  # - geoviews
+  # - holoviews
+  # - hvplot
   - matplotlib
-  - zarr
+  # - zarr
   - nodejs
-  - dask-labextension
+  # - dask-labextension
   # my additions
+  - ipython
   - cmcrameri
   - seawater
   - gsw
@@ -40,8 +41,8 @@ dependencies:
     - -e lo_tools # package of local modules
     - azure-storage-blob
     - PyCO2SYS
-    # - nwm # to access the National Water Model
-    # - hydrotools # different access to National Water Model
+    - s3cmd >= 2.4.0 # AWS S3 tools: this one is linux command line
   # and some non-python tools
   - ffmpeg
   - nco
+  

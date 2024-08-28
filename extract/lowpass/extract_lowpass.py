@@ -79,7 +79,7 @@ while dtlp <= dt1:
         cc1 = this_cca[-1]
         # print(' - Working on index range %d:%d' % (cc0, cc1))
         # sys.stdout.flush()
-        cmd_list = ['python', 'lp_worker.py',
+        cmd_list = ['python', str(Ldir['LO'] / 'extract' / 'lowpass' / 'lp_worker.py'),
                     '-gtx', Ldir['gtagex'], '-ro', str(Ldir['roms_out_num']),
                     '-dslp', dslp, '-ii0', str(cc0), '-ii1', str(cc1),
                     '-fnum', str(fnum), '-test', str(Ldir['testing']), '-v', verbose]
@@ -154,7 +154,6 @@ while dtlp <= dt1:
         lp_full.to_netcdf(out_fn, unlimited_dims=['ocean_time'])
         ds_test = xr.open_dataset(out_fn)
     lp_full.close()
-
 
     if not Ldir['testing']:
         # tidying up

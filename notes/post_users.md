@@ -4,7 +4,7 @@
 
 In all cases the output files are copied to the APL server [https://liveocean.apl.uw.edu/output/](https://liveocean.apl.uw.edu/output/) every morning starting around 6 AM Pacific time (if all goes according to plan) where they are publicly available.  Each day's files are in a folder with a name like f2022.01.11.
 
-The lineup of extraction jobs can be found in `LO/driver/driver_post1.py`.  Currently it is:
+The lineup of extraction jobs can be found in `LO/driver/driver_post1.py`.  For example:
 ```
 job_list = ['nest_wgh', 'surface1', 'layers1', 'ubc1', 'sequim1', 'critfc1',
     'daymovie0', 'drifters0', 'archive0']
@@ -23,7 +23,7 @@ This generates the ocean forcing expected by our nested sub-model of Willapa Bay
 
 ---
 
-### surface
+### surface1
 
 This is an extraction of surface fields served by IOOS.
 
@@ -36,7 +36,7 @@ Contacts:
 
 ---
 
-### layers
+### layers1 and layers2
 
 This is an extraction of fields (including processed ones like Aragonite Saturation State) on the surface, the bottom, and several horizontal depth layers. It is what appears on the NANOOS NVS, and is used by an aquaculture services company, SCOOT.
 
@@ -53,6 +53,15 @@ Contacts at SCOOT:
 - Evan Goodwin <evan@scootscience.com>
 - Iwen Su <iwen@scootscience.com>
 - Connor Dibble <connor.dibble@scootscience.com>
+
+---
+
+### layers_uv
+
+This is an extraction of velocity on layers in JdF for some glider operators at APL. The results go to an AWS s3 bucked on kopah.
+
+Contact:
+- Peter Brodsky <pmb@uw.edu>
 
 ---
 
@@ -91,7 +100,7 @@ Contacts:
 
 ---
 
-### critfc
+### critfc [not running as of 2024.08.19]
 
 This is a large extraction of model fields used by Charles Seaton as backup boundary conditions for his CRITFC model of the Columbia River.
 
@@ -119,7 +128,7 @@ This runs the particle tracking runs using the tracker tool, and then sends them
 
 ---
 
-### archive
+### archive [not currently running 2024.08.25]
 
 This copies the forecast history files to a standard place on perigee. Some users that have an account there use them, e.g. Harper Simmons who uses them to create boundary conditions for a nested forecast of Hood Canal.
 

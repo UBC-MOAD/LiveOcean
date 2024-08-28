@@ -12,7 +12,10 @@ from lo_tools import plotting_functions as pfun
 Ldir = Lfun.Lstart()
 
 # Choose an experiment and release to plot.
-in_dir0 = Ldir['LOo'] / 'tracks'
+in_dir00 = Ldir['LOo'] / 'tracks2'
+gtx_name = Lfun.choose_item(in_dir00, tag='', exclude_tag='.csv',
+    itext='** Choose gtagex from list **', last=False)
+in_dir0 = in_dir00 / gtx_name
 exp_name = Lfun.choose_item(in_dir0, tag='', exclude_tag='.csv',
     itext='** Choose experiment from list **', last=False)
 rel = Lfun.choose_item(in_dir0 / exp_name, tag='.nc', exclude_tag='grid',
@@ -69,7 +72,7 @@ fig = plt.figure()
 
 # MAP
 # set domain limits
-if False:
+if True:
     # plot full domain
     aa = [lonp.min(), lonp.max(), latp.min(), latp.max()]
 else:
@@ -90,13 +93,13 @@ ax.set_ylabel('Latitude')
 ax.set_title(exp_name.strip('/'))
 # add the tracks (packed [time, particle])
 # regular spaghetti plots
-ax.plot(lon, lat, '-k', linewidth=.2)
+ax.plot(lon, lat, '-k', linewidth=.2, alpha=.1)
 ax.plot(lon[0,:], lat[0,:], 'og', alpha=.3)
-ax.plot(lon[-1,:], lat[-1,:], 'or', alpha=.3)
+ax.plot(lon[-1,:], lat[-1,:], 'or', alpha=.2)
 
 # time series
 td = (ot_vec - ot_vec[0])/86400
-tv_list = ['z', 'cs', 'salt', 'temp']
+tv_list = ['z', 'salt', 'temp']
 #tv_list = ['u', 'v', 'lon', 'lat']
 ntv = len(tv_list)
 for ii in range(ntv):
